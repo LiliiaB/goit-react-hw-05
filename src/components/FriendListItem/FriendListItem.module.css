@@ -1,0 +1,29 @@
+.cardFriends {
+  border: 3px solid black;
+  border-radius: 12px;
+  padding: 10px;
+  width: 130px;
+}
+
+.imgItem {
+  width: 100px;
+}
+
+.nameFriends {
+  font-size: 24px;
+  font-weight: 500;
+  margin-bottom: 0;
+  margin-top: 5px;
+}
+.onlineStyle {
+  color: green;
+  font-size: 18px;
+  margin-top: 0;
+  margin-bottom: 5px;
+}
+.offlineStyle {
+  color: red;
+  font-size: 18px;
+  margin-top: 0;
+  margin-bottom: 5px;
+}
