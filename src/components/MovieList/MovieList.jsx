@@ -4,7 +4,7 @@ import css from "./MovieList.module.css";
 export const MovieList = ({ movies }) => {
   return (
     <div>
-      <ul>
+      <ul className={css.list}>
         {movies.map((movie) => {
           return (
             <li key={movie.id}>

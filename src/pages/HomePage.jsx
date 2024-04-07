@@ -3,7 +3,7 @@ import { useState, useEffect } from "react";
 import MovieList from "../components/MovieList/MovieList";
 import { trendingMovies } from "../components/API/api";
 
-function HomePage({ images }) {
+function HomePage() {
   const [movies, setMovies] = useState([]);
 
   useEffect(() => {
