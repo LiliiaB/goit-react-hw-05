@@ -1,27 +1,22 @@
 import "./App.css";
 
-import { MovieCast } from "../MovieCast/MovieCast";
-import { MovieList } from "../MovieList/MovieList";
-import { MovieReview } from "../MovieReview/MovieReview";
-import { Navigation } from "../Navigation/Navigation";
-import { Routes, Route, NavLink } from "react-router-dom";
+import { Routes, Route } from "react-router-dom";
+import { lazy, Suspense } from "react";
+import SearchBar from "../SearchBar/SearchBar";
+import NotFoundPage from "../../pages/NotFoundPage";
 
-const HomePage = lazy(() => import("../pages/HomePage"));
+const HomePage = lazy(() => import("../../pages/HomePage"));
 
 export default function App() {
   return (
     <>
-      <nav>
-        <NavLink to="/">Home</NavLink>
-        <NavLink to="/">Home</NavLink>
-      </nav>
-      <Routes>
-        <Route path="/" element={<HomePage />} />
-        <MovieCast />
-        <MovieReview />
-        <MovieList />
-        <Navigation />
-      </Routes>
+      <Suspense fallback={<div>Loading...</div>}>
+        <SearchBar />
+        <Routes>
+          <Route path="/" element={<HomePage />} />
+          <Route path="*" element={<NotFoundPage />} />
+        </Routes>
+      </Suspense>
     </>
   );
 }
