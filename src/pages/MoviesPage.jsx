@@ -1,54 +1,46 @@
-import { Link, useLocation, useSearchParams } from "react-router-dom";
+import { useSearchParams } from "react-router-dom";
 import SearchBar from "../components/SearchBar/SearchBar";
 import MovieList from "../components/MovieList/MovieList";
 import { searchMovie } from "../components/API/api";
 import { useEffect, useState } from "react";
 import { Loader } from "../components/Loader/Loader";
 
-export const MoviesPage = () => {
-  const location = useLocation();
+const MoviesPage = () => {
   const [searchParams, setSearchParams] = useSearchParams();
   const [loader, setLoader] = useState(false);
-  const [moviesList, setMoviesList] = useState([]);
-
-  const movieName = searchParams.get("movieName") ?? "";
+  const [movies, setMovies] = useState([]);
+  const [error, setError] = useState(null);
 
   useEffect(() => {
-    if (!movieName) return;
-    setLoader(true);
+    //setLoader(true);
     const fetchData = async () => {
       try {
-        const data = await searchMovie(movieName);
-        setMoviesList(data.results);
+        const queryParam = searchParams.get("query");
+        const data = await searchMovie(queryParam);
+        setMovies(data.results);
       } catch (error) {
-        console.error("Error fetching movie data:", error);
+        setError(error.message);
       } finally {
         setLoader(false);
       }
     };
-    fetchData();
-  }, [movieName]);
+    if (searchParams.has("query")) {
+      fetchData();
+    }
+  }, [searchParams]);
 
-  const onSubmit = (values, { resetForm }) => {
-    setSearchParams({ movieName: values.movieName });
-    resetForm();
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    const query = e.target.elements.query.value;
+    setSearchParams({ query });
   };
 
   return (
     <div>
-      <SearchBar onSubmit={onSubmit} />
+      <SearchBar onSubmit={handleSubmit} />
       {loader && <Loader />}
-      <MovieList movies={moviesList}>
-        {moviesList.map((movie) => {
-          return (
-            <li key={movie.id}>
-              <Link to={`/movies/${movie.id}`} state={{ from: location }}>
-                {movie.title}
-              </Link>
-            </li>
-          );
-        })}
-      </MovieList>
+      {error && <p>Some error happened</p>}
+      <MovieList movies={movies} />
     </div>
   );
 };

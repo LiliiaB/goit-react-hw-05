@@ -4,7 +4,6 @@ import MovieReview from "../components/MovieReview/MovieReview";
 export const MoviesPage = () => {
   return (
     <>
-      <></>
       <MovieCast />
       <MovieReview />
     </>
