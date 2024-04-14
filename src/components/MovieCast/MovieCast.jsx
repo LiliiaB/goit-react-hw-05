@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import css from "./MovieCast.module.css";
-import { Link, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { Loader } from "../Loader/Loader";
 import { getMovieCredits } from "../API/api";
 
@@ -12,6 +12,7 @@ export default function MovieCast() {
 
   useEffect(() => {
     setLoader(true);
+    if (!movieId) return;
     const fetchDetails = async () => {
       try {
         const { cast } = await getMovieCredits(movieId);
@@ -32,13 +33,13 @@ export default function MovieCast() {
       <ul className={css.list}>
         {cast.map((character) => {
           return (
-            <li key={character.id} className={css.item}>
+            <li key={character.id}>
               <img
-                className={css.image}
                 src={`https://image.tmdb.org/t/p/w500${character.profile_path}`}
+                width="130"
               />
-              <div className={css.text}>
-                <h2>{character.name}</h2>
+              <div>
+                <p>{character.name}</p>
                 <p>Character: {character.character}</p>
               </div>
             </li>

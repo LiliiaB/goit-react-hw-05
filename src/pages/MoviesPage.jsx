@@ -12,7 +12,7 @@ const MoviesPage = () => {
   const [error, setError] = useState(null);
 
   useEffect(() => {
-    //setLoader(true);
+    // setLoader(true);
     const fetchData = async () => {
       try {
         const queryParam = searchParams.get("query");

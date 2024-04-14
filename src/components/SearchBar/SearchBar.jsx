@@ -1,5 +1,5 @@
 import css from "./SearchBar.module.css";
-import { useId, useState } from "react";
+import { useState } from "react";
 
 const SearchBar = ({ onSubmit }) => {
   const [query, setQuery] = useState("");
