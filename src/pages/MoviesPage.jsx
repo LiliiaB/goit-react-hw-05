@@ -29,9 +29,7 @@ const MoviesPage = () => {
     }
   }, [searchParams]);
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    const query = e.target.elements.query.value;
+  const handleSubmit = async (query) => {
     setSearchParams({ query });
   };
 

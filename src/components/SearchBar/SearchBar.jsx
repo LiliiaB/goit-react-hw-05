@@ -8,9 +8,15 @@ const SearchBar = ({ onSubmit }) => {
     setQuery(e.target.value);
   };
 
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    onSubmit(query);
+    setQuery("");
+  };
+
   return (
     <div>
-      <form onSubmit={onSubmit} className={css.form}>
+      <form onSubmit={handleSubmit} className={css.form}>
         <input
           type="text"
           name="query"
