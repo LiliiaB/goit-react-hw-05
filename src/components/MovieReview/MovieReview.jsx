@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import css from "./MovieReview.module.css";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { getMovieReviews } from "../API/api";
 import { Loader } from "../Loader/Loader";
 
@@ -28,6 +28,7 @@ export default function MovieReview() {
   return (
     <div>
       {loader && <Loader />}
+
       <ul className={css.list}>
         {reviews.map((review) => {
           return (

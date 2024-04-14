@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import css from "./MovieCast.module.css";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { Loader } from "../Loader/Loader";
 import { getMovieCredits } from "../API/api";
 
@@ -28,6 +28,7 @@ export default function MovieCast() {
   return (
     <div>
       {loader && <Loader />}
+
       <ul className={css.list}>
         {cast.map((character) => {
           return (
