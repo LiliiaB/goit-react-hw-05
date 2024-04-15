@@ -35,34 +35,25 @@ export const MoviesPage = () => {
             alt={movie.title}
             width="250"
           />
-          <div className={css.list}>
-            <h2 className={css.title}>{movie.title}</h2>
-            <p className={css.score}>User Score: {movie.vote_average}</p>
-            <h2 className={css.overviewTitle}>Overview</h2>
-            <p className={css.overview}>{movie.overview}</p>
-            <h2 className={css.genresTitle}>Genres</h2>
-            <p className={css.genres}>
-              {movie.genres.map((genre) => genre.name).join(", ")}
-            </p>
+          <div>
+            <h2>{movie.title}</h2>
+            <p>User Score: {movie.vote_average}</p>
+            <h2>Overview</h2>
+            <p>{movie.overview}</p>
+            <h2>Genres</h2>
+            <p>{movie.genres.map((genre) => genre.name).join(", ")}</p>
           </div>
         </div>
       )}
       {movie && (
-        <div className={css.info}>
-          <h4 className={css.titleInfo}>Additional information</h4>
-          <ul className={css.listInfo}>
+        <div>
+          <h4>Additional information</h4>
+          <ul>
             <li>
-              <NavLink to={`/movies/${movieId}/cast`} className={css.itemInfo}>
-                Movie Cast
-              </NavLink>
+              <NavLink to={`/movies/${movieId}/cast`}>Movie Cast</NavLink>
             </li>
             <li>
-              <NavLink
-                to={`/movies/${movieId}/reviews`}
-                className={css.itemInfo}
-              >
-                Movie Reviews
-              </NavLink>
+              <NavLink to={`/movies/${movieId}/reviews`}>Movie Reviews</NavLink>
             </li>
           </ul>
           <Outlet />
